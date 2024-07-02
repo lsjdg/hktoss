@@ -130,7 +130,7 @@ ENV/
 env.bak/
 venv.bak/
 test_data/
-kaggle/playground_series
+kaggle/
 
 # Spyder project settings
 .spyderproject
