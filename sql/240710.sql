@@ -244,10 +244,25 @@ ON A.customerNumber = B.customerNumber;
 -- 미국에 집중
 -- 미국의 top 5 차량 모델 추출
 
-select *
-from orders A
-left join customers B on A.customerNumber = B.customerNumber
-left join orderdetails C on A.ordernumber = C.orderNumber
-left join products D on C.productCode = D.productCode
-where B.country = 'USA'
+SELECT * 
+FROM (
+	SELECT 
+		* 
+		, ROW_NUMBER() OVER(ORDER BY Sales DESC) RNK
+	FROM (
+		SELECT 
+			D.productName
+			, SUM(C.priceeach * C.quantityordered) AS Sales
+		FROM orders A
+		LEFT JOIN customers B
+		ON A.customernumber = B.customernumber
+		LEFT JOIN orderdetails C
+		ON A.ordernumber = C.ordernumber
+		LEFT JOIN products D
+		ON C.productcode = D.productcode
+		WHERE B.country = 'USA'
+		GROUP BY 1
+	) A 
+) A
+WHERE RNK BETWEEN 1 AND 5
 ;
