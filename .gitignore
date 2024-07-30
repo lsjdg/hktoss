@@ -131,6 +131,7 @@ env.bak/
 venv.bak/
 test_data/
 kaggle/
+ml/data/
 
 # Spyder project settings
 .spyderproject
