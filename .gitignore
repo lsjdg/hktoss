@@ -129,7 +129,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-test_data/
+basics/test_data/
 kaggle/
 ml/data/
 
